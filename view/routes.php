@@ -15,6 +15,14 @@ switch ($page) {
     case "Insert Vehicle":
         $controller->insertVehicle();
         break;
+    case "showinsertdriver":
+        $controller->showInsertDriver();
+        break;
+    case "Insert Driver":
+        $controller->insertDriver();;
+        break;
+         
+
 }
 
 ?>

@@ -55,13 +55,10 @@ public function insertVehicle(){
                 }
 
             }else{
-
-                $errors["kubikaza"]="Please enter numeric value";
+                    $errors["kubikaza"]="Please enter numeric value";
 
             }
-
         }
-
 
         if(empty($price)){
             $errors["cena"]="Please enter price";
@@ -79,6 +76,7 @@ public function insertVehicle(){
 
             }
         }
+
         if(empty($category)){
             $errors["kategorija"]="Please choose category";
         }
@@ -103,13 +101,84 @@ public function insertVehicle(){
         }
         
 
-    }
-    //function  end
+    }  //  end function
+    
 
+    public function showInsertDriver(){
+         include "insertDriver.php";
+   }
+    
+
+   public function insertDriver(){
+    $firstName= isset($_GET["imevozaca"])?$_GET["imevozaca"]:"";
+    $lastName= isset($_GET["prezimevozaca"])?$_GET["prezimevozaca"]:"";
+    $yearOfBirth= isset($_GET["godiste"])?$_GET["godiste"]:"";
+
+   $errors = [];
+
+   if(empty($firstName)){
+       $errors["imevozaca"]="Please enter first name";
+    }else{
+        if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $firstName)) {
+       $errors["imevozaca"] = "First name must start with upper case letter.Only letters and white space allowed."; 
+          }
+        
+    }
+    
+  
+    if(empty($lastName)){
+        $errors["prezimevozaca"]="Please enter last name";
+    }else{
+        if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $lastName)) {
+            $errors["imevozaca"] = "Last name must start with upper case letter.Only letters,dashes and white space allowed,"; 
+               }
+    
+    }
+
+
+   if(empty($yearOfBirth)){
+       $errors["godiste"]="Please enter year od birth";
+    }else{
+     
+      if(is_numeric($yearOfBirth)){
+         //   entered  year value must be between 1980 i 2019
+            if($yearOfBirth < 1960 || $yearOfBirth> 1999){
+                $errors["godiste"]="Please enter year between 1960 and 2000";
+            }
+
+      }else{
+
+        $errors["godiste"]="Please enter numeric value"; 
+      
+    }
+
+}
+
+
+if(count($errors) == 0){
+    //if no errors in form
+    //call function from DAO class
+    $dao=new DAO();
+    $dao->insertDriver($firstName,$lastName,$yearOfBirth);
+    // check 
+     //var_dump("Saved data from the form");
+    $msg="Successful data entry";
+    // send on the same page
+    include 'insertDriver.php';
+}else{
+    // check 
+   // var_dump('Form is not OK');
+    $msg="Please fill in all fields in the form";
+    // go on the same page
+    include 'insertDriver.php';
 }
 
 
 
 
+}
+
+
+}
 
 ?>

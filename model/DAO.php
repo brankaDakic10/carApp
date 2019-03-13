@@ -11,6 +11,7 @@ class DAO{
   private $GETALLPRODUCERS="SELECT * FROM proizvodjaci ORDER BY imeproizvodjaca ASC";
   private $GETALLCATEGORIES="SELECT * FROM kategorije";
   private $INSERTVEHICLE="INSERT INTO vozila(imeproizvodjaca,model,godiste,kubikaza,cena,kategorija) VALUES (?,?,?,?,?,?)";
+  private $INSERTDRIVER="INSERT INTO vozaci(imevozaca,prezimevozaca,godiste) VALUES (?,?,?)";
 
 
   public function __construct(){
@@ -19,7 +20,7 @@ class DAO{
 
 
 
-  function  getAllProducers()
+  public function  getAllProducers()
   {
       $statement = $this->db->prepare($this->GETALLPRODUCERS);
       $statement->execute();
@@ -29,7 +30,7 @@ class DAO{
   }
 
 
-    function  getAllCategories()
+   public function  getAllCategories()
     {
         $statement = $this->db->prepare($this->GETALLCATEGORIES);
         $statement->execute();
@@ -38,7 +39,7 @@ class DAO{
     }
 
   
-    function  insertVehicle($producerName,$model,$yearOfProduce,$enginePower,$price,$category)
+    public function  insertVehicle($producerName,$model,$yearOfProduce,$enginePower,$price,$category)
     {
         $statement = $this->db->prepare($this->INSERTVEHICLE);
         $statement->bindValue(1,$producerName);
@@ -51,7 +52,15 @@ class DAO{
         // save data in database
     }
   
+    public function insertDriver($firstName,$lastName,$yearOfBirth)
+    {
+        $statement = $this->db->prepare($this->INSERTDRIVER);
+        $statement->bindValue(1,$firstName);
+        $statement->bindValue(2,$lastName);
+        $statement->bindValue(3,$yearOfBirth);
+        $statement->execute();
 
+    }
 }
 
 

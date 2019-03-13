@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Car Agency</title>
+    <title>Car Agency-Insert Vehicle</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
@@ -29,7 +29,7 @@
 <!--imeproizvodjaca,model,godiste,kubikaza,cena,kategorija-->
 <!--        start section with form-->
             <section class="form-box">
-                <h1 class="form-caption text-center ">Insert new vehicle</h1>
+                <h1 class="form-caption text-center ">Insert vehicle</h1>
               
                 <form action="routes.php">
                     <div class="form-group">
@@ -135,14 +135,13 @@
                         </span>
 
                     </div>
-
-                    <input class="btn btn-primary form-control" type="submit" name="page" value="Insert Vehicle" />
+                    <div class="form-group">
+                    <input class="btn btn-success form-control" type="submit" name="page" value="Insert Vehicle" />
                     </div>
                 </form>
-                <?php
-                      echo "<span style=color:red;>$msg</span><br>";
+             <span style=color:red;><?php echo $msg; ?></span><br>
 
-                ?>
+          
             </section>
 <!--        end section with form-->
 

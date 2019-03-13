@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                 <!-- hard-coded -->
-  <a class="navbar-brand" href="/oop/rentCarApp/view/">CarApp</a>
+                                 <!-- delete this hard-coded -->
+  <a class="navbar-brand" href="/oop/carAgencyApp/view/">CarApp</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,7 @@
         <a class="nav-link" href="routes.php?page=showinsertvehicle">Insert vehicle<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Insert driver</a>
+        <a class="nav-link" href="routes.php?page=showinsertdriver">Insert driver</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Vehicle assignment</a>
