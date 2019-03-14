@@ -224,6 +224,16 @@ if(count($errors) == 0){
       }
   }
 
+  public function showEditDriver()
+  {
+    $idvoz= isset($_GET['idvoz'])?$_GET['idvoz']:'';
+    if(!empty($idvoz) ){
+        $dao= new DAO();
+        $driver = $dao->getDriverById($idvoz);
+        include "editDriver.php";
+    }
+  }
+
 
   public function allVehicles()
   {
@@ -233,6 +243,7 @@ if(count($errors) == 0){
    // $vehicles array (is available on that page)
      include "vehicles.php";
   }
+  
   
   public function deleteVehicle()
   {
@@ -255,4 +266,3 @@ if(count($errors) == 0){
 }
 
 ?>
-

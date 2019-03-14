@@ -39,7 +39,7 @@
                              <td><?php echo $driver['imevozaca'] ?></td>
                              <td><?php echo $driver['prezimevozaca'] ?></td>
                              <td><?php echo $driver['godiste'] ?></td>
-                             <td><a href="#">EDIT</a></td>
+                             <td><a href="routes.php?page=showeditdriver&idvoz=<?php echo $driver['idvoz'] ?>">EDIT</a></td>
                              <td><a href="routes.php?page=deletedriver&idvoz=<?php echo $driver['idvoz'] ?>">DELETE</a></td>
                        </tr>
                 <?php }  ?>  

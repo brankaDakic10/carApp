@@ -1,11 +1,11 @@
 <?php
 
-require_once '../controller/Controller.php';
+require_once "../controller/Controller.php";
 
 $controller = new Controller();
 
 // svaka akcija stize preko ovog objekta $page
-$page = isset($_GET['page']) ? $_GET['page'] : '';
+$page = isset($_GET["page"]) ? $_GET["page"] : "";
 
 switch ($page) {
 
@@ -30,13 +30,16 @@ switch ($page) {
     case "alldrivers":
         $controller->allDrivers();
         break;
-    case 'deletedriver':
+    case "deletedriver":
         $controller->deleteDriver();
         break;  
+    case "showeditdriver":
+        $controller->showEditDriver();
+        break; 
     case "allvehicles":
         $controller->allVehicles();
         break;
-    case 'deletevehicle':
+    case "deletevehicle":
         $controller->deleteVehicle();
         break; 
          
