@@ -12,8 +12,10 @@ class DAO{
   private $GETALLCATEGORIES="SELECT * FROM kategorije";
   private $INSERTVEHICLE="INSERT INTO vozila(imeproizvodjaca,model,godiste,kubikaza,cena,kategorija) VALUES (?,?,?,?,?,?)";
   private $INSERTDRIVER="INSERT INTO vozaci(imevozaca,prezimevozaca,godiste) VALUES (?,?,?)";
-
-
+  private $GETALLVEHICLES="SELECT * FROM vozila";
+  private $GETALLDRIVERS="SELECT * FROM vozaci";
+  private $INSERTDRIVERVEHICLE="INSERT INTO vozilavozaci(idvzl,idvoz,vremedodele) VALUES (?,?,CURRENT_TIMESTAMP)";
+  
   public function __construct(){
     $this->db = DB::createInstance();
   }
@@ -60,6 +62,29 @@ class DAO{
         $statement->bindValue(3,$yearOfBirth);
         $statement->execute();
 
+    }
+
+    public function  getAllVehicles()
+    {
+        $statement = $this->db->prepare($this->GETALLVEHICLES);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+    public function  getAllDrivers()
+    {
+        $statement = $this->db->prepare($this->GETALLDRIVERS);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
+                    // assign
+    public function insertDriverVehicle($idvzl,$idvoz){
+        $statement = $this->db->prepare($this->INSERTDRIVERVEHICLE);
+        $statement->bindValue(1,$idvzl);
+        $statement->bindValue(2,$idvoz);
+        $statement->execute();
+        
     }
 }
 

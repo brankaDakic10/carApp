@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Car Agency-Insert Driver</title>
+    <title>Car Agency-Vehicle assignment</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
@@ -17,55 +17,55 @@
     <?php
     require_once "../model/DAO.php";
     $dao = new DAO();
-   
-     //    get $msg and $errors array from Controller
-    $msg = isset($msg)? $msg:"";
-    $errors = isset($errors)? $errors:array();
+   $allVehicles=$dao->getAllVehicles();
+   $allDrivers=$dao->getAllDrivers();
+   $msg = isset($msg)? $msg:"";
     ?>
     <main class="container col-lg-4">
 
         <!--imevozaca,prezimevozaca,godiste-->
         <!--        start section with form-->
         <section class="form-box">
-            <h1 class="form-caption text-center">Insert driver</h1>
+            <!-- <h1 class="form-caption text-center">Vehicle assignment</h1> -->
             <form action="routes.php">
+               
                 <div class="form-group">
-                    <input class="form-control" type="text" name="imevozaca" placeholder="Enter first name">
-                    <span style=color:orange;>*
-                        <?php
-                                 if(array_key_exists("imevozaca", $errors)){
-                                     echo $errors["imevozaca"];
-                                    }
-                           ?>
-                    </span>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="prezimevozaca" placeholder="Enter last name">
-                    <span style=color:orange;>*
-                        <?php
-                                 if(array_key_exists("prezimevozaca", $errors)){
-                                     echo $errors["prezimevozaca"];
-                                    }
-                           ?>
-                    </span>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="godiste" placeholder="Enter year of birth">
-                    <span style=color:orange;>*
-                        <?php
-                                 if(array_key_exists("godiste", $errors)){
-                                     echo $errors["godiste"];
-                                    }
-                           ?>
-                    </span>
+                <h3 class="text-center">Select Vehicle</h3>
+                <select class="form-control" name="idvzl">
+                            <option value=""></option>
+                            <?php
+                            foreach($allVehicles as $vehicle)
+                            {
+                                echo"<option value='$vehicle[idvzl]'>$vehicle[imeproizvodjaca] $vehicle[model]</option>";
+                            }
+
+                            ?>
+
+                </select>    
 
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-success form-control" type="submit" name="page" value="Insert Driver" />
+                <h3 class="text-center">Select Driver</h3>
+                <select class="form-control" name="idvoz">
+                            <option value=""></option>
+                            <?php
+                            foreach($allDrivers as $driver)
+                            {
+                                echo"<option value='$driver[idvoz]'>$driver[imevozaca] $driver[prezimevozaca]</option>";
+                            }
+
+                            ?>
+
+                </select>    
+
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-success form-control" type="submit" name="page" value="Assign Vehicle" />
                 </div>
             </form>
             
-                      <span style=color:red;><?php echo $msg; ?></span>
+            <span style=color:red;><?php echo $msg; ?></span>
 
                
         </section>

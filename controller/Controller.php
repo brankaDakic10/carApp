@@ -171,14 +171,33 @@ if(count($errors) == 0){
     $msg="Please fill in all fields in the form";
     // go on the same page
     include 'insertDriver.php';
+   }
 }
 
+ public function showDriverVehicle(){
+    include "driverVehicle.php";
+  }
 
 
+  public function assignVehicle(){
 
-}
+    $idvzl= isset($_GET["idvzl"])?$_GET["idvzl"]:"";
+    $idvoz= isset($_GET["idvoz"])?$_GET["idvoz"]:"";
 
-
+   if(!empty($idvzl) && !empty($idvoz) ){
+      $dao=new DAO();
+              ///assign
+      $dao->insertDriverVehicle($idvzl,$idvoz);
+      $msg="You have successfully assigned the vehicle to the driver";
+      // send on the same page
+      include 'driverVehicle.php';
+   }else{
+    $msg="Please choose a vehicle and a driver";
+    include 'driverVehicle.php';
+   }     
+  
+  }
 }
 
 ?>
+

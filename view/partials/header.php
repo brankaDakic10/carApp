@@ -15,7 +15,7 @@
         <a class="nav-link" href="routes.php?page=showinsertdriver">Insert driver</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Vehicle assignment</a>
+        <a class="nav-link"href="routes.php?page=showdrivervehicle">Vehicle assignment</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Drivers</a>

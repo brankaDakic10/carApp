@@ -21,8 +21,8 @@
     $allCategories = $dao->getAllCategories();
      //    take $msg and $errors array from Controller
     //    because include(they are available)
-      $msg=isset($msg)?$msg:"";
-      $errors=isset($errors)?$errors:array();
+    $msg = isset($msg)? $msg:"";
+    $errors = isset($errors)? $errors:array();
     ?>
     <main class="container col-lg-4">
 
@@ -139,8 +139,9 @@
                     <input class="btn btn-success form-control" type="submit" name="page" value="Insert Vehicle" />
                     </div>
                 </form>
-             <span style=color:red;><?php echo $msg; ?></span><br>
-
+                
+             <span style=color:red;><?php echo $msg; ?></span>
+         
           
             </section>
 <!--        end section with form-->
