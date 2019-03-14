@@ -8,14 +8,16 @@ class DAO{
 
   private $db;
 
-  private $GETALLPRODUCERS="SELECT * FROM proizvodjaci ORDER BY imeproizvodjaca ASC";
-  private $GETALLCATEGORIES="SELECT * FROM kategorije";
-  private $INSERTVEHICLE="INSERT INTO vozila(imeproizvodjaca,model,godiste,kubikaza,cena,kategorija) VALUES (?,?,?,?,?,?)";
-  private $INSERTDRIVER="INSERT INTO vozaci(imevozaca,prezimevozaca,godiste) VALUES (?,?,?)";
-  private $GETALLVEHICLES="SELECT * FROM vozila";
-  private $GETALLDRIVERS="SELECT * FROM vozaci";
-  private $INSERTDRIVERVEHICLE="INSERT INTO vozilavozaci(idvzl,idvoz,vremedodele) VALUES (?,?,CURRENT_TIMESTAMP)";
-  
+  private $GETALLPRODUCERS = "SELECT * FROM proizvodjaci ORDER BY imeproizvodjaca ASC";
+  private $GETALLCATEGORIES = "SELECT * FROM kategorije";
+  private $INSERTVEHICLE = "INSERT INTO vozila(imeproizvodjaca,model,godiste,kubikaza,cena,kategorija) VALUES (?,?,?,?,?,?)";
+  private $INSERTDRIVER = "INSERT INTO vozaci(imevozaca,prezimevozaca,godiste) VALUES (?,?,?)";
+  private $GETALLVEHICLES = "SELECT * FROM vozila";
+  private $GETALLDRIVERS = "SELECT * FROM vozaci";
+  private $INSERTDRIVERVEHICLE = "INSERT INTO vozilavozaci(idvzl,idvoz,vremedodele) VALUES (?,?,CURRENT_TIMESTAMP)";
+  private $DELETEDRIVER = "DELETE FROM vozaci WHERE idvoz=?";
+  private $DELETEVEHICLE = "DELETE FROM vozila WHERE idvzl=?";
+
   public function __construct(){
     $this->db = DB::createInstance();
   }
@@ -79,12 +81,29 @@ class DAO{
         return $result;
     }
                     // assign
-    public function insertDriverVehicle($idvzl,$idvoz){
+    public function insertDriverVehicle($idvzl,$idvoz)
+    {
         $statement = $this->db->prepare($this->INSERTDRIVERVEHICLE);
         $statement->bindValue(1,$idvzl);
         $statement->bindValue(2,$idvoz);
         $statement->execute();
         
+    }
+
+
+    public function deleteDriver($idvoz)
+    {
+        $statement = $this->db->prepare($this->DELETEDRIVER);
+        $statement->bindValue(1,$idvoz);
+        $statement->execute();
+        
+    }
+
+    public function deleteVehicle($idvzl)
+    {
+        $statement = $this->db->prepare($this->DELETEVEHICLE);
+        $statement->bindValue(1,$idvzl);
+        $statement->execute();
     }
 }
 

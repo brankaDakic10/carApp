@@ -46,7 +46,7 @@
                              <td><?php echo $vehicle['cena'] ?></td>
                              <td><?php echo $vehicle['kategorija'] ?></td>
                              <td><a href="#">EDIT</a></td>
-                             <td><a href="#">DELETE</a></td>
+                             <td><a href="routes.php?page=deletevehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">DELETE</a></td>
                        </tr>
                 <?php }  ?>  
 
@@ -58,7 +58,11 @@
                             </tr>
                         </tfoot>
                     </table>
-
+                    <?php
+                  
+                  $msg=isset($msg)?$msg:"";
+                  echo "<h6><span style=color:blue;>$msg</span></h6>";
+                 ?>
                     </div>
                 <!--end of .table-responsive-->
             </div>

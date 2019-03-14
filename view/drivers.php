@@ -40,7 +40,7 @@
                              <td><?php echo $driver['prezimevozaca'] ?></td>
                              <td><?php echo $driver['godiste'] ?></td>
                              <td><a href="#">EDIT</a></td>
-                             <td><a href="#">DELETE</a></td>
+                             <td><a href="routes.php?page=deletedriver&idvoz=<?php echo $driver['idvoz'] ?>">DELETE</a></td>
                        </tr>
                 <?php }  ?>  
 
@@ -52,7 +52,11 @@
                             </tr>
                         </tfoot>
                     </table>
-
+                    <?php
+                  
+                  $msg=isset($msg)?$msg:"";
+                  echo "<h6><span style=color:blue;>$msg</span></h6>";
+                 ?>
                     </div>
                 <!--end of .table-responsive-->
             </div>

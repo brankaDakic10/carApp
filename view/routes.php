@@ -29,10 +29,17 @@ switch ($page) {
         break;  
     case "alldrivers":
         $controller->allDrivers();
+        break;
+    case 'deletedriver':
+        $controller->deleteDriver();
         break;  
     case "allvehicles":
         $controller->allVehicles();
-        break;   
+        break;
+    case 'deletevehicle':
+        $controller->deleteVehicle();
+        break; 
+         
           
 }
 

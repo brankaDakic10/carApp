@@ -204,9 +204,26 @@ if(count($errors) == 0){
     $dao = new DAO();
     $drivers = $dao->getAllDrivers();
 
-  // $drivers array (is available on that page)
+    // $drivers array (is available on that page)
      include "drivers.php";
   }
+
+  public function deleteDriver()
+  {
+   // get this value from drivers.php - route (id)
+   $idvoz= isset($_GET['idvoz'])?$_GET['idvoz']:'';
+    if(!empty($idvoz) ){
+
+    $dao= new DAO();
+    $dao->deleteDriver($idvoz);
+    //get list with all $drivers after deleted driver
+    $drivers = $dao->getAllDrivers();
+    $msg= "Deleted driver information from the database";
+
+    include "drivers.php";
+      }
+  }
+
 
   public function allVehicles()
   {
@@ -216,7 +233,23 @@ if(count($errors) == 0){
    // $vehicles array (is available on that page)
      include "vehicles.php";
   }
+  
+  public function deleteVehicle()
+  {
+   // get this value from drivers.php - route (id)
+   $idvzl= isset($_GET['idvzl'])?$_GET['idvzl']:'';
+    if(!empty($idvzl) ){
 
+    $dao= new DAO();
+    $dao->deleteVehicle($idvzl);
+    //get list with all $vehicles after deleted vehicle
+    $vehicles=$dao->getAllVehicles();
+    $msg= "Deleted vehicle information from the database";
+
+    include "vehicles.php";
+      }
+      
+  }
 
   
 }
