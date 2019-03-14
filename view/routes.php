@@ -26,8 +26,14 @@ switch ($page) {
         break; 
     case "Assign Vehicle":
         $controller->assignVehicle();
+        break;  
+    case "alldrivers":
+        $controller->allDrivers();
+        break;  
+    case "allvehicles":
+        $controller->allVehicles();
         break;   
-           
+          
 }
 
 ?>

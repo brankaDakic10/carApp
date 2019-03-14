@@ -197,6 +197,28 @@ if(count($errors) == 0){
    }     
   
   }
+
+
+  public function allDrivers()
+  {
+    $dao = new DAO();
+    $drivers = $dao->getAllDrivers();
+
+  // $drivers array (is available on that page)
+     include "drivers.php";
+  }
+
+  public function allVehicles()
+  {
+    $dao = new DAO();
+    $vehicles=$dao->getAllVehicles();
+
+   // $vehicles array (is available on that page)
+     include "vehicles.php";
+  }
+
+
+  
 }
 
 ?>

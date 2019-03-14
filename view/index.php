@@ -12,7 +12,7 @@
 <body class="index-body">
 
 <?php include 'partials/header.php';?>
-   <main>
+   <main class="container">
 
 
 </main>

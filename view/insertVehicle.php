@@ -138,6 +138,7 @@
                     <div class="form-group">
                     <input class="btn btn-success form-control" type="submit" name="page" value="Insert Vehicle" />
                     </div>
+                    <br><br>
                 </form>
                 
              <span style=color:red;><?php echo $msg; ?></span>

@@ -18,10 +18,10 @@
         <a class="nav-link"href="routes.php?page=showdrivervehicle">Vehicle assignment</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Drivers</a>
+        <a class="nav-link" href="routes.php?page=alldrivers">Drivers</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Vehicles</a>
+        <a class="nav-link" href="routes.php?page=allvehicles">Vehicles</a>
       </li>
        <!-- 
       <li class="nav-item dropdown">
