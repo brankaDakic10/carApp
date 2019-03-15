@@ -36,6 +36,9 @@ switch ($page) {
     case "showeditdriver":
         $controller->showEditDriver();
         break; 
+    case "Edit Driver":
+        $controller->editDriver();
+        break;   
     case "allvehicles":
         $controller->allVehicles();
         break;

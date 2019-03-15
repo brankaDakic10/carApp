@@ -65,7 +65,7 @@
                 </div>
             </form>
             
-                      <span style=color:red;><?php echo $msg; ?></span>
+            <h6><span style=color:red;><?php echo $msg; ?></span></h6>
 
                
         </section>

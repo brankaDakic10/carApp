@@ -130,7 +130,7 @@ public function insertVehicle(){
         $errors["prezimevozaca"]="Please enter last name";
     }else{
         if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $lastName)) {
-            $errors["imevozaca"] = "Last name must start with upper case letter.Only letters,dashes and white space allowed,"; 
+            $errors["prezimevozaca"] = "Last name must start with upper case letter.Only letters,dashes and white space allowed,"; 
                }
     
     }
@@ -233,7 +233,69 @@ if(count($errors) == 0){
         include "editDriver.php";
     }
   }
+  
+   public function editDriver()
+   {
+    $firstName= isset($_GET["ime"])?$_GET["ime"]:"";
+    $lastName= isset($_GET["prezime"])?$_GET["prezime"]:"";
+    $yearOfBirth= isset($_GET["godiste"])?$_GET["godiste"]:"";
+    $idvoz= isset($_GET['idvoz'])?$_GET['idvoz']:"";
 
+
+    $errors=[];
+    if(empty($firstName)){
+        $errors["ime"]="Please enter first name";
+     }else{
+         if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $firstName)) {
+        $errors["ime"] = "First name must start with upper case letter.Only letters and white space allowed."; 
+           }
+         
+     }
+     
+   
+     if(empty($lastName)){
+         $errors["prezime"]="Please enter last name";
+     }else{
+         if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $lastName)) {
+             $errors["prezime"] = "Last name must start with upper case letter.Only letters,dashes and white space allowed,"; 
+                }
+     
+     }
+ 
+ 
+    if(empty($yearOfBirth)){
+        $errors["godiste"]="Please enter year od birth";
+     }else{
+      
+       if(is_numeric($yearOfBirth)){
+             if($yearOfBirth < 1960 || $yearOfBirth> 1999){
+                 $errors["godiste"]="Please enter year between 1960 and 2000";
+             }
+ 
+       }else{
+ 
+         $errors["godiste"]="Please enter numeric value"; 
+       
+       }
+ 
+     }
+     
+     if(count($errors) == 0){
+        $dao=new DAO();
+        $dao->updateDriver($firstName,$lastName,$yearOfBirth,$idvoz);
+        $msg="Changed driver information";
+       $drivers = $dao->getAllDrivers();
+       include "drivers.php";
+
+     }else{
+        $msg="Please fill in all fields in the form";
+        include "editDriver.php";
+     }
+
+
+
+ 
+   }
 
   public function allVehicles()
   {

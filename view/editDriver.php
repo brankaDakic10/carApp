@@ -17,7 +17,10 @@
  
     <main class="container col-lg-4">
     <?php
-       var_dump($driver);
+    // check
+    //    var_dump($driver);
+    $msg=isset($msg)?$msg:"";
+    $errors=isset($errors)?$errors:array();
     ?>
         <!--imevozaca,prezimevozaca,godiste-->
         <!--        start section with form-->
@@ -25,28 +28,67 @@
             <h1 class="form-caption text-center">Edit driver</h1>
             <form action="routes.php">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="ime" placeholder="Enter first name">
+                    <input class="form-control" type="text" name="ime" placeholder="Enter first name"
+                    value="<?php if(isset($driver['imevozaca'])){ echo $driver['imevozaca'];}else{echo $firstName;}?>">
+                    <span style=color:orange;>*
+                        <?php
+                                 if(array_key_exists("ime", $errors)){
+                                     echo $errors["ime"];
+                                    }
+                           ?>
+                    </span>
                     
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="prezime" placeholder="Enter last name">
+                    <input class="form-control" type="text" name="prezime" placeholder="Enter last name"
+                    value="<?php if(isset($driver['prezimevozaca'])){ echo $driver['prezimevozaca'];}else{echo $lastName;}?>">
+                    <span style=color:orange;>*
+                        <?php
+                                 if(array_key_exists("prezime", $errors)){
+                                     echo $errors["prezime"];
+                                    }
+                           ?>
+                    </span>
                    
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="godiste" placeholder="Enter year of birth">
+                    <input class="form-control" type="text" name="godiste" placeholder="Enter year of birth"
+                    value="<?php  if(isset($driver['godiste'])){ echo $driver['godiste'];}else{echo $yearOfBirth;}?>">
+                    <span style=color:orange;>*
+                        <?php
+                                 if(array_key_exists("godiste", $errors)){
+                                     echo $errors["godiste"];
+                                    }
+                           ?>
+                    </span>
                   
 
                 </div>
+                               <!-- //send hidden data $idvoz to Controller -->
+                <div>
+                <input type="hidden" name="idvoz" value="<?php if(isset($driver['idvoz'])) echo $driver['idvoz']; ?>">
+                </div>
+
+
                 <div class="form-group">
                     <input class="btn btn-success form-control" type="submit" name="page" value="Edit Driver" />
                 </div>
             </form>
             
-                  
+            <h6><span style=color:red;><?php echo $msg; ?></span></h6>   
 
                
         </section>
         <!--        end section with form-->
+
+        <?php
+
+            $firstName= isset($_GET["ime"])?$_GET["ime"]:"";
+            $lastName= isset($_GET["prezime"])?$_GET["prezime"]:"";
+            $yearOfBirth= isset($_GET["godiste"])?$_GET["godiste"]:"";
+          // var_dump($lastName);
+        ?>
+       
 
     </main>
     <?php include 'partials/footer.php';?>

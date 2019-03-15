@@ -17,8 +17,8 @@ class DAO{
   private $INSERTDRIVERVEHICLE = "INSERT INTO vozilavozaci(idvzl,idvoz,vremedodele) VALUES (?,?,CURRENT_TIMESTAMP)";
   private $DELETEDRIVER = "DELETE FROM vozaci WHERE idvoz=?";
   private $DELETEVEHICLE = "DELETE FROM vozila WHERE idvzl=?";
-  private $GETDRIVERBYID="SELECT * FROM vozaci WHERE idvoz=?";
-
+  private $GETDRIVERBYID = "SELECT * FROM vozaci WHERE idvoz=?";
+  private $UPDATEDRIVER = "UPDATE vozaci SET imevozaca=?, prezimevozaca=?, godiste=? WHERE idvoz=?";
 
   public function __construct(){
     $this->db = DB::createInstance();
@@ -112,6 +112,17 @@ class DAO{
         return $result;
         
     }
+    
+    public function updateDriver($firstName,$lastName,$yearOfBirth,$idvoz)
+    {
+        $statement = $this->db->prepare($this->UPDATEDRIVER);
+        $statement->bindValue(1,$firstName);
+        $statement->bindValue(2,$lastName);
+        $statement->bindValue(3,$yearOfBirth);
+        $statement->bindValue(4,$idvoz);
+        $statement->execute();
+    }
+
 
     public function deleteVehicle($idvzl)
     {
