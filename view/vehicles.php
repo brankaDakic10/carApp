@@ -45,7 +45,7 @@
                              <td><?php echo $vehicle['kubikaza'] ?></td>
                              <td><?php echo $vehicle['cena'] ?></td>
                              <td><?php echo $vehicle['kategorija'] ?></td>
-                             <td><a href="#">EDIT</a></td>
+                             <td><a href="routes.php?page=showeditvehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">EDIT</a></td>
                              <td><a href="routes.php?page=deletevehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">DELETE</a></td>
                        </tr>
                 <?php }  ?>  

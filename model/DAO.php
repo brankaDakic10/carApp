@@ -19,6 +19,7 @@ class DAO{
   private $DELETEVEHICLE = "DELETE FROM vozila WHERE idvzl=?";
   private $GETDRIVERBYID = "SELECT * FROM vozaci WHERE idvoz=?";
   private $UPDATEDRIVER = "UPDATE vozaci SET imevozaca=?, prezimevozaca=?, godiste=? WHERE idvoz=?";
+  private $GETVEHICLEBYID = "SELECT * FROM vozila WHERE idvzl=?";
 
   public function __construct(){
     $this->db = DB::createInstance();
@@ -48,12 +49,12 @@ class DAO{
     public function  insertVehicle($producerName,$model,$yearOfProduce,$enginePower,$price,$category)
     {
         $statement = $this->db->prepare($this->INSERTVEHICLE);
-        $statement->bindValue(1,$producerName);
-        $statement->bindValue(2,$model);
-        $statement->bindValue(3,$yearOfProduce);
-        $statement->bindValue(4,$enginePower);
-        $statement->bindValue(5,$price);
-        $statement->bindValue(6,$category);
+        $statement->bindValue(1, $producerName);
+        $statement->bindValue(2, $model);
+        $statement->bindValue(3, $yearOfProduce);
+        $statement->bindValue(4, $enginePower);
+        $statement->bindValue(5, $price);
+        $statement->bindValue(6, $category);
         $statement->execute();
         // save data in database
     }
@@ -61,9 +62,9 @@ class DAO{
     public function insertDriver($firstName,$lastName,$yearOfBirth)
     {
         $statement = $this->db->prepare($this->INSERTDRIVER);
-        $statement->bindValue(1,$firstName);
-        $statement->bindValue(2,$lastName);
-        $statement->bindValue(3,$yearOfBirth);
+        $statement->bindValue(1, $firstName);
+        $statement->bindValue(2, $lastName);
+        $statement->bindValue(3, $yearOfBirth);
         $statement->execute();
 
     }
@@ -86,8 +87,8 @@ class DAO{
     public function insertDriverVehicle($idvzl,$idvoz)
     {
         $statement = $this->db->prepare($this->INSERTDRIVERVEHICLE);
-        $statement->bindValue(1,$idvzl);
-        $statement->bindValue(2,$idvoz);
+        $statement->bindValue(1, $idvzl);
+        $statement->bindValue(2, $idvoz);
         $statement->execute();
         
     }
@@ -96,7 +97,7 @@ class DAO{
     public function deleteDriver($idvoz)
     {
         $statement = $this->db->prepare($this->DELETEDRIVER);
-        $statement->bindValue(1,$idvoz);
+        $statement->bindValue(1, $idvoz);
         $statement->execute();
         
     }
@@ -105,7 +106,7 @@ class DAO{
     public function getDriverById($idvoz)
     {
         $statement = $this->db->prepare($this->GETDRIVERBYID);
-        $statement->bindValue(1,$idvoz);
+        $statement->bindValue(1, $idvoz);
         $statement->execute();
    
         $result=$statement->fetch();
@@ -116,10 +117,10 @@ class DAO{
     public function updateDriver($firstName,$lastName,$yearOfBirth,$idvoz)
     {
         $statement = $this->db->prepare($this->UPDATEDRIVER);
-        $statement->bindValue(1,$firstName);
-        $statement->bindValue(2,$lastName);
-        $statement->bindValue(3,$yearOfBirth);
-        $statement->bindValue(4,$idvoz);
+        $statement->bindValue(1, $firstName);
+        $statement->bindValue(2, $lastName);
+        $statement->bindValue(3, $yearOfBirth);
+        $statement->bindValue(4, $idvoz);
         $statement->execute();
     }
 
@@ -127,9 +128,21 @@ class DAO{
     public function deleteVehicle($idvzl)
     {
         $statement = $this->db->prepare($this->DELETEVEHICLE);
-        $statement->bindValue(1,$idvzl);
+        $statement->bindValue(1, $idvzl);
         $statement->execute();
     }
+
+    public function getVehicleById($idvzl)
+    {
+        $statement = $this->db->prepare($this->GETVEHICLEBYID);
+        $statement->bindValue(1, $idvzl);
+        $statement->execute();
+   
+        $result=$statement->fetch();
+        return $result;
+
+    }
+
 }
 
 

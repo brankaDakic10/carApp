@@ -44,7 +44,11 @@ switch ($page) {
         break;
     case "deletevehicle":
         $controller->deleteVehicle();
+        break;
+    case "showeditvehicle":
+        $controller->showEditVehicle();
         break; 
+        
          
           
 }

@@ -313,7 +313,7 @@ if(count($errors) == 0){
   public function deleteVehicle()
   {
    // get this value from drivers.php - route (id)
-   $idvzl= isset($_GET['idvzl'])?$_GET['idvzl']:'';
+   $idvzl= isset($_GET['idvzl'])?$_GET['idvzl']:"";
     if(!empty($idvzl) ){
 
     $dao= new DAO();
@@ -327,6 +327,17 @@ if(count($errors) == 0){
       
   }
 
+
+   public function showEditVehicle()
+   {
+    $idvzl= isset($_GET['idvzl'])?$_GET['idvzl']:"";
+    if(!empty($idvzl) ){
+        $dao= new DAO();
+        $vehicle = $dao->getVehicleById($idvzl);
+        include "editVehicle.php";
+    }
+
+   }
   
 }
 
