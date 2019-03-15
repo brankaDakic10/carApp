@@ -285,6 +285,9 @@ if(count($errors) == 0){
         $dao->updateDriver($firstName,$lastName,$yearOfBirth,$idvoz);
         $msg="Changed driver information";
        $drivers = $dao->getAllDrivers();
+       
+    // get edited driver before include "drivers.php";
+       $driver = $dao->getDriverById($idvoz);
        include "drivers.php";
 
      }else{

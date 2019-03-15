@@ -9,12 +9,16 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
-<body >
+<body>
 
 <?php include "partials/header.php";?>
 
    <main class="container col-lg-4">
 
+  <?php
+//   var_dump($driver);
+        $idChangedDriver= isset($driver['idvoz']) ? $driver['idvoz']:"";
+  ?>
 
    <section class="row">
             <div class="col-xs-12 text-center">
@@ -33,18 +37,28 @@
                             </tr>
                         </thead>
                         <tbody>
-             <?php foreach($drivers as $driver){  ?>    
-                
-                       <tr>
+             <?php foreach($drivers as $driver){ 
+                 if($driver['idvoz'] == $idChangedDriver){
+                 
+                 ?>    
+                       <tr style=background-color:orange;>
                              <td><?php echo $driver['imevozaca'] ?></td>
                              <td><?php echo $driver['prezimevozaca'] ?></td>
                              <td><?php echo $driver['godiste'] ?></td>
                              <td><a href="routes.php?page=showeditdriver&idvoz=<?php echo $driver['idvoz'] ?>">EDIT</a></td>
                              <td><a href="routes.php?page=deletedriver&idvoz=<?php echo $driver['idvoz'] ?>">DELETE</a></td>
                        </tr>
-                <?php }  ?>  
+                <?php }else{ ?>  
+                  
+                    <tr>
+                             <td><?php echo $driver['imevozaca'] ?></td>
+                             <td><?php echo $driver['prezimevozaca'] ?></td>
+                             <td><?php echo $driver['godiste'] ?></td>
+                             <td><a href="routes.php?page=showeditdriver&idvoz=<?php echo $driver['idvoz'] ?>">EDIT</a></td>
+                             <td><a href="routes.php?page=deletedriver&idvoz=<?php echo $driver['idvoz'] ?>">DELETE</a></td>
+                       </tr>
 
-
+  <?php  } } ?> 
                         </tbody>
                         <tfoot>
                             <tr>
