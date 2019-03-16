@@ -445,6 +445,47 @@ if(count($errors) == 0){
     
 
    }
+
+
+
+   public function login()
+   {
+    $username= isset($_POST['username'])?$_POST['username']:"";
+    $password= isset($_POST['password'])?$_POST['password']:"";
+    if(!empty($username) && !empty($password)){
+        $dao=new DAO();
+        //  get user from database
+       $loggedInUser = $dao->login($username,$password);
+            if($loggedInUser){
+            //if ok
+            //put user in session
+            session_start();
+            $_SESSION['loggedIn'] = serialize($loggedInUser);
+            
+           include 'index.php';
+    
+            }else{
+                    $msg="Incorrect data entered. Please enter valid username and password";
+                    include 'login.php';
+            }
+          
+    
+      }else{
+        $msg="Please fill in all fields in the form";
+        include 'login.php';
+      }
+  
+   }
+
+
+
+   public function logout()
+{
+  session_start();
+  session_unset();
+  session_destroy();
+  header('Location:login.php');
+}
   
 }
 

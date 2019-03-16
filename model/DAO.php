@@ -21,7 +21,7 @@ class DAO{
   private $UPDATEDRIVER = "UPDATE vozaci SET imevozaca=?, prezimevozaca=?, godiste=? WHERE idvoz=?";
   private $GETVEHICLEBYID = "SELECT * FROM vozila WHERE idvzl=?";
   private $UPDATEVEHICLE = "UPDATE vozila SET imeproizvodjaca=?, model=?, godiste=?, kubikaza=?, cena=?, kategorija=?  WHERE idvzl=?";
-
+  private $LOGIN = "SELECT * FROM users WHERE username=? AND password=?";
 
 
 
@@ -160,6 +160,17 @@ class DAO{
         $statement->bindValue(7, $idvzl);
         $statement->execute();
 
+    }
+
+    public function login($username,$password)
+    {
+        $statement = $this->db->prepare($this->LOGIN);
+        $statement->bindValue(1, $username);
+        $statement->bindValue(2, $password);
+        $statement->execute();
+   
+        $result=$statement->fetch();
+        return $result;
     }
 
 }

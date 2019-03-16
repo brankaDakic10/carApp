@@ -51,9 +51,22 @@ switch ($page) {
     case "Edit Vehicle":
         $controller->editVehicle();
         break;
+    case "logout":
+        $controller->logout();
+        break; 
         
-         
-          
+}
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+    $page = isset($_POST['page'])?$_POST['page']:"";
+
+    switch($page){
+        case "Log in":
+        $controller->login();
+        break; 
+        
+    }
+
 }
 
 ?>

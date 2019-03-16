@@ -4,19 +4,38 @@
    <!-- Required meta tags -->
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title>Car Agency</title>
+   <title>Login</title>
     <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body class="index-body">
 
-<?php include 'partials/header.php';?>
-   <main class="container">
+   <main class="container col-lg-4">
 
-    <!-- <span class="text-white">Ulogovan je administrator:<?php echo $loggedInUser['username']; ?>&nbsp;</span> -->
-
-
+   <section class="form-box">
+            <h1 class="form-caption text-center">Login</h1>
+            <form action="routes.php" method="post">
+            <div class="form-group">
+            
+            <input type="text" name="username" class="form-control"  id="username" placeholder="Username">
+                   
+            </div>
+            <div class="form-group">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                   
+            </div>
+            <div class="form-group">
+            <input type="submit" class="btn btn-primary form-control" name="page" value="Log in">
+            </div>
+            
+          </form>
+    <section>
+    <?php
+                  
+                  $msg=isset($msg)?$msg:"";
+                  echo "<h6><span style=color:blue;>$msg</span></h6>";
+                 ?>
 </main>
 <?php include 'partials/footer.php';?>
 
