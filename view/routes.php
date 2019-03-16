@@ -48,6 +48,9 @@ switch ($page) {
     case "showeditvehicle":
         $controller->showEditVehicle();
         break; 
+    case "Edit Vehicle":
+        $controller->editVehicle();
+        break;
         
          
           

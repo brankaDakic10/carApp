@@ -41,7 +41,7 @@
                  if($driver['idvoz'] == $idChangedDriver){
                  
                  ?>    
-                       <tr style=background-color:orange;>
+                       <tr style=background-color:lightgreen;>
                              <td><?php echo $driver['imevozaca'] ?></td>
                              <td><?php echo $driver['prezimevozaca'] ?></td>
                              <td><?php echo $driver['godiste'] ?></td>

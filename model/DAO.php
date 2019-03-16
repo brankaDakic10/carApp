@@ -20,6 +20,10 @@ class DAO{
   private $GETDRIVERBYID = "SELECT * FROM vozaci WHERE idvoz=?";
   private $UPDATEDRIVER = "UPDATE vozaci SET imevozaca=?, prezimevozaca=?, godiste=? WHERE idvoz=?";
   private $GETVEHICLEBYID = "SELECT * FROM vozila WHERE idvzl=?";
+  private $UPDATEVEHICLE = "UPDATE vozila SET imeproizvodjaca=?, model=?, godiste=?, kubikaza=?, cena=?, kategorija=?  WHERE idvzl=?";
+
+
+
 
   public function __construct(){
     $this->db = DB::createInstance();
@@ -140,6 +144,21 @@ class DAO{
    
         $result=$statement->fetch();
         return $result;
+
+    }
+
+
+    public function updateVehicle($vehicleProducer,$vehicleModel,$vehicleYearOfProduce,$enginePower,$vehiclePrice,$vehicleCategory,$idvzl)
+    {
+        $statement = $this->db->prepare($this->UPDATEVEHICLE);
+        $statement->bindValue(1, $vehicleProducer);
+        $statement->bindValue(2, $vehicleModel);
+        $statement->bindValue(3, $vehicleYearOfProduce);
+        $statement->bindValue(4, $enginePower);
+        $statement->bindValue(5, $vehiclePrice);
+        $statement->bindValue(6, $vehicleCategory);
+        $statement->bindValue(7, $idvzl);
+        $statement->execute();
 
     }
 

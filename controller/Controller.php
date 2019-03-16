@@ -338,6 +338,113 @@ if(count($errors) == 0){
     }
 
    }
+
+
+   public function editVehicle()
+   {
+    $vehicleProducer = isset($_GET["imeproizvodjaca"])?$_GET["imeproizvodjaca"]:"";
+    $vehicleModel = isset($_GET["model"])?$_GET["model"]:"";
+    $vehicleYearOfProduce = isset($_GET["godiste"])?$_GET["godiste"]:"";
+    $enginePower = isset($_GET["kubikaza"])?$_GET["kubikaza"]:"";
+    $vehiclePrice = isset($_GET["cena"])?$_GET["cena"]:"";
+    $vehicleCategory = isset($_GET["kategorija"])?$_GET["kategorija"]:"";
+    $idvzl = isset($_GET['idvzl'])?$_GET['idvzl']:"";
+
+    $errors = [];
+   
+    if(empty($vehicleProducer)){
+        $errors["imeproizvodjaca"]="Please enter producer of vehicle";
+     }
+     else{
+         if (!preg_match("/^[A-Z][a-zA-Z -]+$/", $vehicleProducer)) {
+        $errors["imeproizvodjaca"] = "Producer name must start with upper case letter.Only letters and white space allowed."; 
+           }
+     }
+
+     if(empty($vehicleModel)){
+        $errors["model"]="Please enter model of vehicle";
+     }
+
+ 
+    if(empty($vehicleYearOfProduce)){
+        $errors["godiste"]="Please enter year od produce";
+        }else{
+    //if I have year value check if it is numeric 
+        if(is_numeric($vehicleYearOfProduce)){
+    //   entered  year value must be between 1980 i 2019
+                if($vehicleYearOfProduce < 1980 || $vehicleYearOfProduce > 2019){
+                    $errors["godiste"]="Please enter year between 1980 and 2019";
+                }
+
+        }else{
+
+            $errors["godiste"]="Please enter numeric value"; 
+        }
+    }
+
+    if(empty($enginePower)){
+        $errors["kubikaza"]="Please enter engine power";
+    }else{
+    
+        if(is_numeric($enginePower)){
+
+            if($enginePower < 40 || $enginePower > 6000){
+                $errors["kubikaza"]="Please enter engine power between 40 and 6000 ";
+            }
+
+        }else{
+                $errors["kubikaza"]="Please enter numeric value";
+        }
+    }
+
+    if(empty($vehiclePrice)){
+        $errors["cena"]="Please enter price";
+    }else{
+    
+        if(is_numeric($vehiclePrice)){
+            
+            if( $vehiclePrice <= 0 ){
+                $errors["cena"]="The price must be higher then 0";
+            }
+
+        }else{
+
+            $errors["cena"]="Please enter numeric value";
+
+        }
+    }
+
+    if(empty($vehicleCategory)){
+        $errors["kategorija"]="Please enter vehicle category";
+    }
+    else{
+
+        if (!preg_match("/^[A-D]{1}$/", $vehicleCategory)) {
+            $errors["kategorija"] = "Only big letters A, B, C or D are allowed insert for vehicle category."; 
+               }
+
+    }
+  
+
+    if(count($errors) == 0){
+        $dao=new DAO();
+        $dao->updateVehicle($vehicleProducer,$vehicleModel,$vehicleYearOfProduce,$enginePower,$vehiclePrice,$vehicleCategory,$idvzl);
+        $msg="Changed vehicle information";
+        $vehicles = $dao->getAllVehicles();
+       
+    // get edited vehicle before include "vehicle.php"; for change color row in table
+       $vehicle = $dao->getVehicleById($idvzl);
+
+       include "vehicles.php";
+
+     }else{
+        $msg="Please fill in all fields in the form";
+        include "editVehicle.php";
+     }
+
+    
+
+   }
   
 }
 

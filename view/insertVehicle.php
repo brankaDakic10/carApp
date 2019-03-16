@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
 
-                        <input class="form-control" type="text" name="kubikaza" id="kubikaza" placeholder="Enter engine power">
+                        <input class="form-control" type="number" name="kubikaza" id="kubikaza" placeholder="Enter engine power">
                         <span style=color:orange;>*
                           <?php
                                  if(array_key_exists("kubikaza", $errors)){

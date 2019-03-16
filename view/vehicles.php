@@ -14,7 +14,10 @@
 <?php include "partials/header.php";?>
 
    <main class="container col-lg-4">
-
+   <?php
+//   var_dump($driver);
+        $idChangedVehicle = isset($vehicle['idvzl']) ? $vehicle['idvzl']:"";
+  ?>
 
    <section class="row">
             <div class="col-xs-12 text-center">
@@ -36,9 +39,11 @@
                             </tr>
                         </thead>
                         <tbody>
-             <?php foreach($vehicles as $vehicle){  ?>    
+             <?php foreach($vehicles as $vehicle){  
+              if($vehicle['idvzl'] == $idChangedVehicle){    
+                 ?>    
                 
-                       <tr>
+                       <tr style=background-color:lightgreen;>
                              <td><?php echo $vehicle['imeproizvodjaca'] ?></td>
                              <td><?php echo $vehicle['model'] ?></td>
                              <td><?php echo $vehicle['godiste'] ?></td>
@@ -48,7 +53,19 @@
                              <td><a href="routes.php?page=showeditvehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">EDIT</a></td>
                              <td><a href="routes.php?page=deletevehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">DELETE</a></td>
                        </tr>
-                <?php }  ?>  
+                       <?php }else{ ?> 
+                        <tr>
+                             <td><?php echo $vehicle['imeproizvodjaca'] ?></td>
+                             <td><?php echo $vehicle['model'] ?></td>
+                             <td><?php echo $vehicle['godiste'] ?></td>
+                             <td><?php echo $vehicle['kubikaza'] ?></td>
+                             <td><?php echo $vehicle['cena'] ?></td>
+                             <td><?php echo $vehicle['kategorija'] ?></td>
+                             <td><a href="routes.php?page=showeditvehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">EDIT</a></td>
+                             <td><a href="routes.php?page=deletevehicle&idvzl=<?php echo $vehicle['idvzl'] ?>">DELETE</a></td>
+                       </tr>
+
+                <?php }  }?>  
 
 
                         </tbody>
